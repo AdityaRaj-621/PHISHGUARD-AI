@@ -1,0 +1,33 @@
+/* Stat Card Styles */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-card__label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--fw-medium);
+}
+
+.stat-card__value-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.stat-card__value {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.stat-card__delta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}

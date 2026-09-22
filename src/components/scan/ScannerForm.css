@@ -1,0 +1,61 @@
+/* Scanner Form Layout Styles */
+.scanner-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .scanner-layout {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.scanner-header {
+  margin-bottom: var(--space-5);
+}
+
+.scanner-title {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.scanner-subtitle {
+  font-size: var(--fs-h4);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-body);
+}
+
+.scanner-card {
+  border: 1px solid var(--color-border);
+}
+
+.scanner-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 599px) {
+  .scanner-submit-wrapper {
+    width: 100%;
+  }
+
+  .scanner-submit-wrapper .btn {
+    width: 100%;
+  }
+}
+
+.scanner-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

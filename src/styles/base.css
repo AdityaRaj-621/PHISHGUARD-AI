@@ -1,0 +1,119 @@
+/* Typography and Base Element Styles */
+h1, .fs-h1 {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+
+h2, .fs-h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+
+h3, .fs-h3 {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text);
+}
+
+h4, .fs-h4 {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text);
+}
+
+.fs-display {
+  font-size: var(--fs-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+
+.fs-body {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+}
+
+.fs-sm {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+}
+
+.fs-xs {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius-sm);
+  transition: top var(--dur-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}

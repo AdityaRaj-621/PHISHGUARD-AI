@@ -1,0 +1,192 @@
+/* Scanning Overlay Styles */
+.scanning-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  animation: fadeIn 160ms var(--ease);
+}
+
+.scanning-modal {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .scanning-modal {
+    padding: var(--space-7);
+  }
+}
+
+.scanning-header {
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-4);
+}
+
+.scanning-header__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.scanning-title {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.scanning-elapsed {
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+}
+
+.scanning-subtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.scanning-stages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--space-4);
+}
+
+.scanning-stage-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  min-height: 48px;
+}
+
+.scanning-dot-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+}
+
+.scanning-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 2;
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.scanning-dot--pending {
+  border: 2px solid var(--color-border-strong);
+  background-color: var(--color-surface);
+}
+
+.scanning-dot--active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px var(--color-primary-soft);
+  animation: pulseDot 1.4s infinite ease-in-out;
+}
+
+.scanning-dot--done {
+  background-color: var(--color-success);
+  color: #ffffff;
+  border: 1px solid var(--color-success);
+}
+
+.scanning-rail {
+  position: absolute;
+  top: 20px;
+  bottom: -28px;
+  width: 2px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.scanning-rail--done {
+  background-color: var(--color-success);
+}
+
+.scanning-rail--active {
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-border));
+}
+
+.scanning-stage-label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  padding-top: 1px;
+  font-weight: var(--fw-regular);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.scanning-stage-row--active .scanning-stage-label {
+  color: var(--color-text);
+  font-weight: var(--fw-semibold);
+}
+
+.scanning-stage-row--done .scanning-stage-label {
+  color: var(--color-text-secondary);
+}
+
+.scanning-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.scanning-error-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-critical-bg);
+  border: 1px solid var(--color-critical-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.scanning-error-msg {
+  font-size: var(--fs-body);
+  color: var(--color-critical);
+  font-weight: var(--fw-medium);
+}
+
+.scanning-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanning-dot--active {
+    animation: none;
+  }
+}

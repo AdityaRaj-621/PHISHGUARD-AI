@@ -1,0 +1,52 @@
+/* Card Styles */
+.ui-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+
+.ui-card--alt {
+  background-color: var(--color-card-alt);
+}
+
+.ui-card--elevated {
+  box-shadow: var(--shadow-md);
+}
+
+.ui-card--bordered {
+  border-color: var(--color-border-strong);
+}
+
+.ui-card--interactive {
+  cursor: pointer;
+}
+
+.ui-card--interactive:hover {
+  border-color: var(--color-primary);
+}
+
+/* Padding variations */
+.ui-card--p-none {
+  padding: 0;
+}
+
+.ui-card--p-sm {
+  padding: var(--space-3);
+}
+
+.ui-card--p-md {
+  padding: var(--space-5);
+}
+
+.ui-card--p-lg {
+  padding: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .ui-card--p-lg {
+    padding: var(--space-7);
+  }
+}

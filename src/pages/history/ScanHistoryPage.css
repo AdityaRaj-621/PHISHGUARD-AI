@@ -1,0 +1,96 @@
+/* Scan History Page Styles */
+.history-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.history-title {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.history-subtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.history-controls-card {
+  border: 1px solid var(--color-border);
+}
+
+.history-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 600px) {
+  .history-controls-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .history-controls-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.history-search-input {
+  margin-bottom: 0;
+}
+
+.history-controls-grid .form-field {
+  margin-bottom: 0;
+}
+
+.history-active-chips {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.history-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border: 1px solid #BFDBFE;
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+}
+
+.history-filter-chip button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  padding: 2px;
+  cursor: pointer;
+}
+
+.history-mobile-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
