@@ -4,7 +4,7 @@ import { mockAuthService } from './mock/mockApi';
 
 const realAuthService = {
   async register({ name, username, email, password, password2 }) {
-    const res = await api.post('/auth/register/', { name, username, email, password, password2 });
+    const res = await api.post('/auth/register/', { name, username, email, password, password2: password2 || password });
     return res.data;
   },
 

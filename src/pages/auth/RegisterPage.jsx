@@ -69,7 +69,8 @@ export default function RegisterPage() {
         name: formData.name.trim(),
         username: formData.username.trim() || formData.email.split('@')[0],
         email: formData.email.trim().toLowerCase(),
-        password: formData.password
+        password: formData.password,
+        password2: formData.confirmPassword || formData.password
       });
 
       notify.success('Account created successfully');
