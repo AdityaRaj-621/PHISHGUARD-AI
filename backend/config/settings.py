@@ -119,7 +119,7 @@ CORS_ALLOW_CREDENTIALS = False
 # AI Configuration
 AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-AI_MODEL = os.getenv("AI_MODEL", "gemini-3.5-flash")
+AI_MODEL = os.getenv("AI_MODEL", "gemini-2.5-flash")
 AI_ENABLED = bool(GEMINI_API_KEY) and os.getenv("AI_ENABLED", "True") == "True"
 AI_TIMEOUT_SECONDS = float(os.getenv("AI_TIMEOUT_SECONDS", "12"))
 
