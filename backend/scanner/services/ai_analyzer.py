@@ -139,7 +139,7 @@ def _call_gemini(user_prompt: str, api_key: str, model_name: str, timeout: float
 
     # Primary model + automatic fallback models for maximum reliability
     models_to_try = [model_name]
-    fallback_candidates = ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+    fallback_candidates = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.5-flash"]
     for candidate in fallback_candidates:
         if candidate not in models_to_try:
             models_to_try.append(candidate)
