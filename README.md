@@ -1,58 +1,169 @@
-# PhishGuard AI — Frontend Application
+# PhishGuard AI 🛡️
 
-> **Defensive-Security Scanner for Messages, URLs, and Emails**  
-> Built for hackathon presentation and real-world threat detection comprehension.
+> **Next-Generation Defensive Security Scanner & Threat Intelligence Platform**  
+> AI-powered detection for phishing messages, deceptive URLs, and malicious emails with explainable evidence and actionable remediation steps.
+
+---
+
+## 📁 Monorepo Structure
+
+This repository combines both the **Frontend UI** and **Backend Service** for PhishGuard AI:
+
+```
+PHISHGUARD-AI/
+├── frontend/                  # React + Vite Interactive Frontend Application
+│   ├── public/                # Static assets
+│   ├── src/                   # React components, pages, contexts, services, hooks
+│   │   ├── api/               # API client & mock engine
+│   │   ├── components/        # Reusable UI components & instrument panels
+│   │   ├── contexts/          # Auth, scan, and notification state
+│   │   ├── layouts/           # App and Auth layouts
+│   │   └── pages/             # Landing, Scanner, Dashboard, Admin, Education
+│   ├── .env.example           # Frontend environment variable template
+│   ├── package.json           # Node dependencies and scripts
+│   └── vite.config.js         # Vite configuration & dev proxy
+│
+├── backend/                   # Django REST Framework + Google Gemini Backend Service
+│   ├── accounts/              # User models, authentication & JWT endpoints
+│   ├── config/                # Django project settings & URL routing
+│   ├── dashboard/             # Analytics, aggregation & admin telemetry
+│   ├── scanner/               # Multi-signal detection engine (Rules, URL heuristics, Gemini AI)
+│   ├── tests/                 # Automated test suite (31 unit & integration tests)
+│   ├── .env.example           # Backend environment variable template
+│   ├── manage.py              # Django management script
+│   └── requirements.txt       # Python dependencies
+│
+├── .gitignore                 # Unified gitignore for Node & Python environments
+└── README.md                  # Master documentation
+```
 
 ---
 
 ## ⚡ Quick Start
 
+### 1. Backend Setup (Django + DRF)
+
 ```bash
-# 1. Install dependencies
+# Navigate to backend directory
+cd backend
+
+# Create and activate virtual environment
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment
+cp .env.example .env
+
+# Run database migrations
+python manage.py migrate
+
+# Seed demo user and 14 realistic sample scans
+python manage.py seed_demo
+
+# (Optional) Verify AI Analyzer connectivity with Gemini API
+python manage.py check_ai
+
+# Start Django backend server
+python manage.py runserver 8000
+```
+
+- **Backend API Base**: `http://127.0.0.1:8000/api/v1/`
+- **Django Admin Portal**: `http://127.0.0.1:8000/admin/`
+
+---
+
+### 2. Frontend Setup (React + Vite)
+
+```bash
+# In a new terminal window, navigate to frontend directory
+cd frontend
+
+# Install dependencies
 npm install
 
-# 2. Start development server
-npm run dev
+# Configure environment
+cp .env.example .env.local
 
-# 3. Build production bundle
+# Start Vite development server
+npm run dev
+```
+
+- **Frontend Application**: `http://localhost:5173`
+
+> **Note on Standalone vs Live Mode**:
+> In `frontend/.env.local`:
+> - Set `VITE_USE_MOCK_API=false` to connect to the live Django backend at `http://localhost:8000/api/v1`.
+> - Set `VITE_USE_MOCK_API=true` to run 100% standalone offline with browser-based mock intelligence and deterministic hackathon demo fixtures.
+
+---
+
+## 🛡️ Core Architecture & Detection Pipeline
+
+```
+                               ┌─────────────────────────────┐
+                               │     User Input Submission   │
+                               │  (Message / URL / Email)    │
+                               └──────────────┬──────────────┘
+                                              │
+                      ┌───────────────────────┼───────────────────────┐
+                      ▼                       ▼                       ▼
+          ┌──────────────────────┐┌──────────────────────┐┌──────────────────────┐
+          │  Deterministic Rule  ││   Zero-Network URL   ││  Google Gemini AI    │
+          │     Engine Catalogue ││  Heuristic Analyzer  ││   Reasoning Engine   │
+          └──────────┬───────────┘└──────────┬───────────┘└──────────┬───────────┘
+                     │                       │                       │
+                     └───────────────────────┼───────────────────────┘
+                                             ▼
+                               ┌─────────────────────────────┐
+                               │   Risk Calibration Engine   │
+                               │ (Decisive Floors & Ceilings)│
+                               └─────────────┬───────────────┘
+                                             ▼
+                               ┌─────────────────────────────┐
+                               │  Final Explainable Score    │
+                               │ (0-100 Meter + Indicators + │
+                               │  Prioritized Action Steps)  │
+                               └─────────────────────────────┘
+```
+
+---
+
+## 🧪 Testing & Validation
+
+### Backend Automated Test Suite
+```bash
+cd backend
+python manage.py test
+```
+Runs comprehensive test suites validating:
+- Rule catalogue matching & authentic OTP false-positive avoidance
+- URL heuristics without external network leakages
+- Risk combination, decisive floors & boundaries
+- AI JSON validation, timeouts & prompt injection defense
+- End-to-end authentication, multi-tenant data isolation, and dashboard metrics
+
+### Frontend Linting & Build Check
+```bash
+cd frontend
 npm run build
 ```
 
-The application will run locally at `http://localhost:5173`.
+---
+
+## 🔐 Credentials & Demo Accounts
+
+### Default Demo Accounts (after running `python manage.py seed_demo` or in mock mode)
+- **User Account**: `aisha@example.com` / `DemoPass123!`
+- **Admin Account**: `admin@phishguard.ai` / `AdminPass123!`
 
 ---
 
-## 🧪 Zero-Backend Standalone Mock Mode
+## 📄 License & Attribution
 
-PhishGuard AI runs **100% standalone** with zero backend dependency out of the box using `VITE_USE_MOCK_API=true` in `.env.local`.
-
-- **Demo User Account**: `aisha@example.com` / `DemoPass123!` (or use the one-click demo login buttons on `/login`)
-- **Admin Account**: `admin@phishguard.ai` / `AdminPass123!` (grants access to `/admin`)
-- **Realistic Dataset**: Pre-seeded with 12 diverse scan fixtures covering all 5 risk levels (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`, `UNKNOWN`) and all scan vectors (`message`, `url`, `email`).
-- **Deterministic Hackathon Demo Scenario**: Pasting the §44 demo message produces the exact canonical **92/100 HIGH Risk Phishing** result with 4 indicators and 4 prioritized action steps.
-
-### Failure Simulation Triggers
-To demonstrate error handling live on stage without crashing the system, type these keywords into any scanner:
-- `FORCE_ERROR` — Simulates a server 500 error / analysis failure.
-- `FORCE_TIMEOUT` — Simulates an engine timeout (>30s) with retry options.
-- `FORCE_AI_FAIL` — Simulates an AI analyzer outage while falling back to rule-based analysis.
-
----
-
-## 🎨 Design & Features
-
-- **3D Interactive Neon Background**: Interactive Three.js WebGL cursor tubes effect on the landing hero with click-to-randomize color palettes.
-- **Instrument Panel Design System**: Slate blue app chrome, crisp white sheets, 1px borders, and 4-channel redundant risk encoding (color + icon + text + position/border).
-- **Calibrated Risk Meter**: 0–100 horizontal segmented scale with smooth 800ms reveal count-up animations.
-- **Explainable Evidence**: Quoted snippets extracted from user submissions.
-- **Urgent Action Recommendations**: Prioritized steps ("Don't click", "Never share OTP", "Verify").
-- **Interactive Security Education**: 10 comprehensive security guides with "Spot the Scam" practice quizzes.
-- **Admin Platform Telemetry**: Aggregate risk distribution, daily scan throughput, and threat category breakdown.
-
----
-
-## 🔒 Security & Accessibility Discipline
-
-- **Zero Secrets**: No API keys, model provider keys, or tokens in frontend code.
-- **Non-Clickable Scanned Links**: User-submitted URLs are rendered safely as monospace text with copy buttons, never as clickable hyperlinks.
-- **WCAG AA Compliant**: High-contrast ratios, complete keyboard navigability, screen reader ARIA announcements (`role="status"`, `role="alert"`), and `prefers-reduced-motion` global support.
+Developed with ❤️ for defensive cybersecurity awareness and threat intelligence.

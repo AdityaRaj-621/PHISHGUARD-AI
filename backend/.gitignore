@@ -1,0 +1,24 @@
+# Environment and database
+.env
+db.sqlite3
+db.sqlite3-journal
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# Static and media files
+static/
+media/
